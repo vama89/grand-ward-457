@@ -35,6 +35,20 @@ class Handler(webapp2.RequestHandler):
 
 class MainHandler(Handler):
 	def get(self):
-		self.render()
+		self.render("front1.html")
+
+	def post(self):
+		amount = self.request.get("amount")
+		company = self.request.get("company")
+
+		self.write(str(company).split())
+
+		'''
+		self.write(amount)
+		if ba == "on":
+			self.write(ba)
+		else:
+			self.write("it is off")
+		'''
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
