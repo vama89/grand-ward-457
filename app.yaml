@@ -18,3 +18,9 @@ libraries:
   
 - name: jinja2
   version: latest 
+
+- name: numpy
+  version: "1.9.0"
+
+- name: rpy2
+  version: "2.4.3"
