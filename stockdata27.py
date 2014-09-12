@@ -28,8 +28,8 @@ def stockdata(symbol, start_date, end_date):
             vol = numpy.vstack([vol,voltemp])
             adjclose = numpy.vstack([adjclose,adjclosetemp])
 
-    return date, open, high, low, close, vol, adjclose
-    #return adjclose
+    #return date, open, high, low, close, vol, adjclose
+    return adjclose
 """
 symbol has to be in matrix form
     date = np.asmatrix(date)

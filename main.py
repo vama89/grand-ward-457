@@ -47,13 +47,11 @@ class MainHandler(Handler):
 		amount = self.request.get("amount")
 		company = self.request.get("company")
 		
-		#import output27.py
-		#import port_py.stockdata27
-		symbol = ['aapl', 'ba']
+		#This formats the company parameter to an array of strings.
+		symbol = str(company).split()
 		start_date = '20140101'
 		end_date = '20140701'
 
-		self.write(str(company).split())
 		self.write(stockdata27.stockdata(symbol, start_date, end_date))
 		#adjclose = stockdata27.stockdata(symbol, start_date, end_date)
 		#self.write(returns27.returns(stockdata27.stockdata(symbol, start_date, end_date)))
