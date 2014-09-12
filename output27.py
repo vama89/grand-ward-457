@@ -2,6 +2,7 @@ import stockdata27
 import returns27
 import portfoliomv27
 import numpy
+
 import rpy2.robjects
 from rpy2.robjects.numpy2ri import numpy2ri
 import json
