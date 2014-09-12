@@ -17,6 +17,8 @@
 import os
 import webapp2
 import jinja2
+#import rpy2
+#import numpy
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -40,8 +42,15 @@ class MainHandler(Handler):
 	def post(self):
 		amount = self.request.get("amount")
 		company = self.request.get("company")
+		
+		#import output27.py
+		#import port_py.stockdata27
+		#symbol = ['aapl', 'ba']
+		#start_date = '20140101'
+		#end_date = '20140701'
 
 		self.write(str(company).split())
+		#self.write(stockdata27.stockdata(symbol, start_date, end_date))
 
 		'''
 		self.write(amount)
