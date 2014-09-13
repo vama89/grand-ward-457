@@ -20,9 +20,9 @@ import jinja2
 
 #import rpy2
 #import numpy
-import stockdata27
+#import stockdata27
 #import returns27
-#import output27
+import output27
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -49,19 +49,10 @@ class MainHandler(Handler):
 		
 		#This formats the company parameter to an array of strings.
 		symbol = str(company).split()
+		#Setting the time series of stock information
 		start_date = '20140101'
 		end_date = '20140701'
 
-		self.write(stockdata27.stockdata(symbol, start_date, end_date))
-		#adjclose = stockdata27.stockdata(symbol, start_date, end_date)
-		#self.write(returns27.returns(stockdata27.stockdata(symbol, start_date, end_date)))
-		#self.write(output27.results(symbol, start_date, end_date))
-		'''
-		self.write(amount)
-		if ba == "on":
-			self.write(ba)
-		else:
-			self.write("it is off")
-		'''
+		self.write(output27.results(symbol, start_date, end_date))
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
