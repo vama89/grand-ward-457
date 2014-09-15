@@ -60,7 +60,7 @@ class MainHandler(Handler):
 		risks = float(calculatedResults[1])
 		allocation = calculatedResults[2]
  		
-		self.render("mainOutputs.html", returns=returns, risks=risks)
+		self.render("mainOutputs.html", returns=returns, risks=risks, allocation=allocation)
 
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
