@@ -2,7 +2,7 @@ import stockdata27
 import returns27
 import portfoliomv27
 import numpy
-import json
+#import json
 
 def results(symbol, start_date, end_date):
     """

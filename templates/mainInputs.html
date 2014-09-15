@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+	Please input the amount you wish to invest.
+</p>
+
+<form method="post">
+	<label>
+		<div>Amount</div>
+		<input type="integer" name="amount">
+	</label>
+
+	<label>
+		<div>Company Name</div>
+		<input type="string" name="company">
+	</label>
+
+	<br>
+
+	<input type="submit">
+</form>
+
+{% endblock %}

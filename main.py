@@ -41,7 +41,7 @@ class Handler(webapp2.RequestHandler):
 
 class MainHandler(Handler):
 	def get(self):
-		self.render("front1.html")
+		self.render("mainInputs.html")
 
 	def post(self):
 		amount = self.request.get("amount")
@@ -54,5 +54,6 @@ class MainHandler(Handler):
 		end_date = '20140701'
 
 		self.write(output27.results(symbol, start_date, end_date))
+
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
