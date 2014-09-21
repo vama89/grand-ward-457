@@ -17,17 +17,12 @@
 import os
 import webapp2
 import jinja2
-
-#import rpy2
-#import numpy
-#import stockdata27
-#import returns27
 import output27
 import json
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
-								autoescape = True)
+								autoescape = False)
 
 class Handler(webapp2.RequestHandler):
 	def write(self, *a, **kw):
@@ -57,10 +52,15 @@ class MainHandler(Handler):
 		#Run the Static Model Calculations and get the outputs of the Models into an array.
 		calculatedResults = output27.results(symbol, start_date, end_date)
 		returns = float(calculatedResults[0])*100.0
-		risks = float(calculatedResults[1])
-		allocation = calculatedResults[2]
- 		
-		self.render("mainOutputs.html", returns=returns, risks=risks, allocation=allocation)
+		risks = float(calculatedResults[1])*100
+		allocation = calculatedResults[2]*100
+
+		#Formatting the piedata in order to display
+		piedata =[{"label": "joe", "value": 50},{"label": "mike","value": 50}, {"label": "pete","value": 70}]
+		#x = json.dumps(piedata)
+		#print x
+		
+		self.render("mainOutputs.html", returns=returns, risks=risks, allocation=piedata)
 
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)

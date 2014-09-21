@@ -31,25 +31,15 @@
 			<h1>Risk: <small>{{risks}}%</small></h1>
 			<h1>Allocation:</h1>
 			<div id="chart">
-				
+			
 				<script>
 					var height = 400,
 						width = 600,
 						radius = 200,
 						colors = d3.scale.category20c();
 
-					var piedata = [
-						{	
-							label: "joe",
-							value: 50 
-						}, {
-							label: "mike",
-							value: 50 
-						}, {
-							label: "pete",
-							value: 50 
-						}
-					]
+					var piedata = {{allocation}}
+
 					var pie = d3.layout.pie()
 						.value(function(d) {
 							return d.value;
