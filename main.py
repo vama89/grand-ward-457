@@ -57,8 +57,6 @@ class MainHandler(Handler):
 
 		#Formatting the piedata in order to display
 		piedata =[{"label": "joe", "value": 50},{"label": "mike","value": 50}, {"label": "pete","value": 70}]
-		print symbol
-		print amount
 		
 		self.render("mainOutputs.html", returns=returns, risks=risks, allocation=piedata)
 
