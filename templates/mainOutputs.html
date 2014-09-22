@@ -48,28 +48,50 @@
 							.domain(d3.range(0, bardata.length))
 							.rangeBands([0,width])
 
-				var myChart = d3.select('#chart').append('svg')
-						.attr('width', width)
-						.attr('height', height)
-						.selectAll('rect').data(bardata)
-						.enter().append('rect')
-							.style('fill', '#C61C6F')
-							.attr('width', xScale.rangeBand())
-							.attr('x', function(d,i) {
-								return xScale(i);
-							})
-							.attr('height', 0)
-							.attr('y', height)
+					var tooltip = d3.select('body').append('div')
+							.style('position', 'absolute')
+							.style('padding', '0 10px')
+							.style('background', 'white')
+							.style('opacity', .9)
 
-							.on('mouseover', function(d) {
-								d3.select(this)
-									.style('opacity', .5)
-							})
+					var myChart = d3.select('#chart').append('svg')
+							.attr('width', width)
+							.attr('height', height)
+							.selectAll('rect').data(bardata)
+							.enter().append('rect')
+								.style('fill', '#C61C6F')
+								.attr('width', xScale.rangeBand())
+								.attr('x', function(d,i) {
+									return xScale(i);
+								})
+								.attr('height', 0)
+								.attr('y', height)
 
-							.on('mouseout', function(d) {
-								d3.select(this)
-									.style('opacity', 1)
-							})
+								.on('mouseover', function(d) {
+
+									tooltip.transition()
+										.style('opacity', .9)
+
+									tooltip.html(d)
+										.style('left', (d3.event.pageX - 35) + 'px')
+										.style('top', (d3.event.pageY - 30) + 'px')
+
+									d3.select(this)
+										.style('opacity', .5)
+								})
+
+								.on('mouseout', function(d) {
+
+									tooltip.transition()
+										.style('opacity', .9)
+
+									tooltip.html(d)
+										.style('left', '0px')
+										.style('top', '0px')
+
+									d3.select(this)
+										.style('opacity', 1)
+								})
 
 					myChart.transition()
 							.attr('height', function(d) {
