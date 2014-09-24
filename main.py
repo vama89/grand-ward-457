@@ -35,6 +35,18 @@ class Handler(webapp2.RequestHandler):
 	def render(self, template, **kw):
 		self.write(self.render_str(template, **kw))
 
+class About(Handler):
+	def get(self):
+		self.render("about.html")
+
+class Blog(Handler):
+	def get(self):
+		self.render("blog.html")
+
+class Login_Register(Handler):
+	def get(self):
+		self.render("login_register.html")
+
 class MainHandler(Handler):
 	def get(self):
 		self.render("mainInputs.html")
@@ -45,6 +57,7 @@ class MainHandler(Handler):
 		
 		#This formats the company parameter to an array of strings.
 		symbol = str(company).split()
+
 		#Setting the time series of stock information
 		start_date = '20140101'
 		end_date = '20140701'
@@ -53,12 +66,15 @@ class MainHandler(Handler):
 		calculatedResults = output27.results(symbol, start_date, end_date)
 		returns = float(calculatedResults[0])*100.0
 		risks = float(calculatedResults[1])*100
-		allocation = calculatedResults[2]*100
-
-		#Formatting the piedata in order to display
-		piedata =[{"label": "joe", "value": 50},{"label": "mike","value": 50}, {"label": "pete","value": 70}]
+		allocation = calculatedResults[2]		
 		
-		self.render("mainOutputs.html", returns=returns, risks=risks, allocation=piedata)
+		#Formatting the piedata in order to display
+		#piedata =[{"label": "joe", "value": 50},{"label": "mike","value": 50}, {"label": "pete","value": 70}]
+		
+		self.render("mainOutputs.html", returns=returns, risks=risks)#, allocation=piedata)
 
 
-app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
+app = webapp2.WSGIApplication([('/', MainHandler),
+								('/About', About),
+								('/Blog', Blog),
+								('/Login_Register', Login_Register)], debug=True)

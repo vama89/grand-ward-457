@@ -26,6 +26,8 @@
 		</form>
 	</div>
 
+	<p>Bar graphs </p>
+
 	<div class="col-md-6 pull-right">
 			<h1>Returns: <small>{{returns}}%</small></h1>
 			<h1>Risk: <small>{{risks}}%</small></h1>
@@ -81,13 +83,6 @@
 								})
 
 								.on('mouseout', function(d) {
-
-									tooltip.transition()
-										.style('opacity', .9)
-
-									tooltip.html(d)
-										.style('left', '0px')
-										.style('top', '0px')
 
 									d3.select(this)
 										.style('opacity', 1)
