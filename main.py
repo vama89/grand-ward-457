@@ -37,7 +37,7 @@ class Handler(webapp2.RequestHandler):
 
 class MainHandler(Handler):
 	def get(self):
-		self.render("testGraphs.html")
+		self.render("mainInputs.html")
 
 	def post(self):
 		amount = self.request.get("amount")
