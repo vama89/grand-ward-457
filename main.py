@@ -72,10 +72,13 @@ class MainHandler(Handler):
 		risks = float(calculatedResults[1])*100
 		allocation = calculatedResults[2]		
 		
+		print symbol
+		print allocation
+
 		#Formatting the piedata in order to display
 		#piedata =[{"label": "joe", "value": 50},{"label": "mike","value": 50}, {"label": "pete","value": 70}]
 		
-		self.render("mainOutputs.html", returns=returns, risks=risks)#, allocation=piedata)
+		self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation)
 
 
 app = webapp2.WSGIApplication([('/', MainHandler),
