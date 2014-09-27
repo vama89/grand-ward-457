@@ -26,8 +26,6 @@
 		</form>
 	</div>
 
-	<p>Bar graphs </p>
-
 	<div class="col-md-6 pull-right">
 			<h1>Returns: <small>{{returns}}%</small></h1>
 			<h1>Risk: <small>{{risks}}%</small></h1>
@@ -35,7 +33,8 @@
 			<div id="chart">
 			
 				<script>
-					var bardata = [20, 30, 45, 15];
+					var bardata = [20, 30, 45, 15, 82,];
+					var names = ['BA', 'MSFT', 'AAPL', 'GOGL', 'CHRL'];
 
 					var height = 200,
 						width = 400,
@@ -98,6 +97,27 @@
 							.delay(function(d, i) {
 								return i * 80;
 							})
+
+					myChart.select('svg')
+						.data(bardata)
+						.enter().append('text')
+						.style('fill', 'black')
+						.attr('x', function(d,i) {
+									return xScale(i);
+								})
+						.attr('height', function(d) {
+								return yScale(d);
+							})
+						.attr('y', function(d) {
+								return height - yScale(d) + 9;
+							})
+						.attr('dy', '.35em')
+						.attr('dx', '1.5em')
+						.attr('font', '1px')
+						.data(names)
+						.text(function(d) { return d; });
+
+
 				</script>
 			</div>
 	</div>

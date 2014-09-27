@@ -47,6 +47,10 @@ class Login_Register(Handler):
 	def get(self):
 		self.render("login_register.html")
 
+class Test_Graph(Handler):
+	def get(self):
+		self.render("testGraphs.html")
+
 class MainHandler(Handler):
 	def get(self):
 		self.render("mainInputs.html")
@@ -77,4 +81,5 @@ class MainHandler(Handler):
 app = webapp2.WSGIApplication([('/', MainHandler),
 								('/About', About),
 								('/Blog', Blog),
-								('/Login_Register', Login_Register)], debug=True)
+								('/Login_Register', Login_Register),
+								('/Test_Graph', Test_Graph)], debug=True)
