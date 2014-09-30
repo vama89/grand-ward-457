@@ -10,7 +10,7 @@
 		<form method="post">
 			<label>
 				<div>Amount</div>
-				<input type="integer" name="amount">
+				<input type="number" name="amount">
 			</label>
 
 			<br>
@@ -22,9 +22,61 @@
 
 			<br>
 
-			<input type="submit">
+			<label><div> Analysis Tools: </div></label>
+
+			<br>
+			
+			<div class="btn-group">
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					Static Models
+					<span class="caret"></span>
+				</button>
+				 <ul class="dropdown-menu" role="menu">
+					<li>
+						<label>
+						<input type="radio" name="models" value="staticshort">
+						Short Selling
+						</label>
+					</li>
+					<li>
+						<label>
+						<input type="radio" name="models" value="staticnoshort">
+						No Short Selling
+						</label>
+					</li>
+				</ul>
+			</div>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					Dynamic Models
+					<span class="caret"></span>
+				</button>
+				 <ul class="dropdown-menu" role="menu">
+					<li>
+						<label>
+						<input type="radio" name="models" value="dynamcishort">
+						Short Selling
+						</label>
+					</li>
+					<li>
+						<label>
+						<input type="radio" name="models" value="dynamicnoshort">
+						No Short Selling
+						</label>
+					</li>
+				</ul>
+			</div>
+
+				<input type="submit" class="btn btn-default">
+			</div>
+
+			<br>
 		</form>
 	</div>
+	
 
 	<div class="col-md-6 pull-right">
 			<h1>Returns: <small>{{returns}}%</small></h1>

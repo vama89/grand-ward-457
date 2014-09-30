@@ -58,7 +58,8 @@ class MainHandler(Handler):
 	def post(self):
 		amount = self.request.get("amount")
 		company = self.request.get("company")
-		
+		models = self.request.get("models")
+
 		#This formats the company parameter to an array of strings.
 		symbol = str(company).split()
 
@@ -67,7 +68,7 @@ class MainHandler(Handler):
 		end_date = '20140701'
 
 		#Run the Static Model Calculations and get the outputs of the Models into an array.
-		calculatedResults = output27.results(symbol, start_date, end_date)
+		calculatedResults = output27.results(symbol, start_date, end_date, models)
 		returns = float(calculatedResults[0])*100.0
 		risks = float(calculatedResults[1])*100
 		allocation = calculatedResults[2]		
