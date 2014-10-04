@@ -57,7 +57,7 @@ class MainHandler(Handler):
 		self.render("mainInputs.html")
 
 	def post(self):
-		amount = self.request.get("amount")
+		amount = float(self.request.get("amount"))
 		company = self.request.get("company")
 		models = self.request.get("models")
 
@@ -73,10 +73,11 @@ class MainHandler(Handler):
 			calculatedResults = output27.results(symbol, start_date, end_date, models)
 			
 			returns = float(calculatedResults[0])*100.0
+			moneyReturned = returns*amount
 			risks = float(calculatedResults[1])*100
 			allocation = calculatedResults[2]
 
-			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation)
+			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation, amount=amount, moneyReturned=moneyReturned)
 		except:
 			self.render("mainInputsError.html")
 				
