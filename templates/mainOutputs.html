@@ -16,7 +16,9 @@
 			<br>
 
 			<label>
-				<div>Company Name</div>
+				<div>Company Stock Ticker Name</div> 
+				<small>(space-separate each ticker symbol eg. aapl googl r msft)</small>
+				<br>
 				<input type="string" name="company">
 			</label>
 
@@ -85,6 +87,7 @@
 	
 
 	<div class="col-md-6 pull-right">
+			<h1>Total Money Made: <small>${{totalMoneyMade}}</small></h1>
 			<h1>Model Used: <small>{{modelLabel}}</small></h1>
 			<h1>Money Invested: <small>${{amount}}</small></h1>
 			<h1>Money Returned: <small>${{moneyReturned}}</small></h1>
@@ -92,7 +95,6 @@
 			<h1>Risk: <small>{{risks}}%</small></h1>
 			<h1>% Allocation:</h1>
 			<div id="chart">
-			
 				<script>
 					var bardata = {{allocation}};
 					var names = {{symbol}};
@@ -181,7 +183,6 @@
 
 
 				</script>
-				<h1>Total Money Made: <small>${{totalMoneyMade}}</small></h1>
 			</div>
 	</div>
 </div>
