@@ -60,6 +60,7 @@ class MainHandler(Handler):
 		amount = float(self.request.get("amount"))
 		company = self.request.get("company")
 		models = self.request.get("models")
+		modelLabel=str(models)
 
 		#This formats the company parameter to an array of strings.
 		symbol = str(company).split()
@@ -78,7 +79,7 @@ class MainHandler(Handler):
 			risks = float(calculatedResults[1])*100
 			allocation = calculatedResults[2]
 
-			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation, amount=amount, moneyReturned=moneyReturned, totalMoneyMade=totalMoneyMade)
+			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation, amount=amount, moneyReturned=moneyReturned, totalMoneyMade=totalMoneyMade, modelLabel=modelLabel)
 		except:
 			self.render("mainInputsError.html")
 				
