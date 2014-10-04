@@ -74,10 +74,11 @@ class MainHandler(Handler):
 			
 			returns = float(calculatedResults[0])*100.0
 			moneyReturned = returns*amount
+			totalMoneyMade = amount+moneyReturned
 			risks = float(calculatedResults[1])*100
 			allocation = calculatedResults[2]
 
-			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation, amount=amount, moneyReturned=moneyReturned)
+			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation, amount=amount, moneyReturned=moneyReturned, totalMoneyMade=totalMoneyMade)
 		except:
 			self.render("mainInputsError.html")
 				
