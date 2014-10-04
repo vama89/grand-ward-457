@@ -57,20 +57,22 @@ class MainHandler(Handler):
 		self.render("mainInputs.html")
 
 	def post(self):
-		amount = float(self.request.get("amount"))
-		company = self.request.get("company")
-		models = self.request.get("models")
-		modelLabel=str(models)
-
-		#This formats the company parameter to an array of strings.
-		symbol = str(company).split()
-
-		#Setting the time series of stock information
-		start_date = '20140101'
-		end_date = '20140701'
+		
 
 		#Run the Static Model Calculations and get the outputs of the Models into an array.
 		try:
+			amount = float(self.request.get("amount"))
+			company = self.request.get("company")
+			models = self.request.get("models")
+			modelLabel=str(models)
+
+			#This formats the company parameter to an array of strings.
+			symbol = str(company).split()
+
+			#Setting the time series of stock information
+			start_date = '20140101'
+			end_date = '20140701'
+			
 			calculatedResults = output27.results(symbol, start_date, end_date, models)
 			
 			returns = float(calculatedResults[0])*100.0
