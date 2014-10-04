@@ -14,7 +14,6 @@ def get_historical_prices(symbol, start_date, end_date):
     Returns a nested dictionary (dict of dicts).
     outer dict keys are dates ('YYYYMMDD')
     """	
-
     params = urllib.urlencode({
         's': symbol,
         'a': int(start_date[4:6]) - 1,

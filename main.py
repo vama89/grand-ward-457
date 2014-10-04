@@ -20,6 +20,7 @@ import jinja2
 import output27
 import json
 
+
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 								autoescape = False)
@@ -68,18 +69,29 @@ class MainHandler(Handler):
 		end_date = '20140701'
 
 		#Run the Static Model Calculations and get the outputs of the Models into an array.
-		calculatedResults = output27.results(symbol, start_date, end_date, models)
-		returns = float(calculatedResults[0])*100.0
-		risks = float(calculatedResults[1])*100
-		allocation = calculatedResults[2]		
+		try:
+			calculatedResults = output27.results(symbol, start_date, end_date, models)
+			
+			returns = float(calculatedResults[0])*100.0
+			risks = float(calculatedResults[1])*100
+			allocation = calculatedResults[2]
+
+			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation)
+		except:
+			self.render("mainInputsError.html")
+				
 		
-		print symbol
-		print allocation
+		#checking for correct input
+
+		#resp = urllib2.urlopen(req)
+		#content = str(resp.read().decode('utf-8').strip())
+		#daily_data = content.splitlines()
+		#t = len(daily_data)
 
 		#Formatting the piedata in order to display
 		#piedata =[{"label": "joe", "value": 50},{"label": "mike","value": 50}, {"label": "pete","value": 70}]
 		
-		self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation)
+		
 
 
 app = webapp2.WSGIApplication([('/', MainHandler),
