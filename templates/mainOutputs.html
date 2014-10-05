@@ -10,16 +10,16 @@
 		<form method="post">
 			<label>
 				<div>Amount</div>
-				<input type="number" name="amount">
+				<input type="number" name="amount" placeholder="ex: 1000">
 			</label>
 
 			<br>
 
 			<label>
 				<div>Company Stock Ticker Name</div> 
-				<small>(space-separate each ticker symbol eg. aapl googl r msft)</small>
+				<small>(space-separate each ticker symbol)</small>
 				<br>
-				<input type="string" name="company">
+				<input type="string" name="company" placeholder="ex: ba msft aapl googl">
 			</label>
 
 			<br>
@@ -38,13 +38,13 @@
 				 <ul class="dropdown-menu" role="menu">
 					<li>
 						<label>
-						<input type="radio" name="models" value="staticshort">
+						<input type="radio" name="models" value="Minimum Variance Portfolio - Short">
 						Short Selling
 						</label>
 					</li>
 					<li>
 						<label>
-						<input type="radio" name="models" value="staticnoshort">
+						<input type="radio" name="models" value="Minimum Variance Portfolio - No Short">
 						No Short Selling
 						</label>
 					</li>
@@ -87,12 +87,13 @@
 	
 
 	<div class="col-md-6 pull-right">
-			<h1>Total Money Made: <small>${{totalMoneyMade}}</small></h1>
 			<h1>Model Used: <small>{{modelLabel}}</small></h1>
-			<h1>Money Invested: <small>${{amount}}</small></h1>
-			<h1>Money Returned: <small>${{moneyReturned}}</small></h1>
-			<h1>Returns: <small>{{returns}}%</small></h1>
-			<h1>Risk: <small>{{risks}}%</small></h1>
+			<h1>Daily Anaylsis from: <small>1/1/14-7/1/14</h1>
+			<h1>Daily Gross Returns: <small>${{totalMoneyMade}}</small></h1>
+			<h1>Orginal Amount Invested: <small>${{amount}}</small></h1>
+			<h1>Daily Amount Returned: <small>${{moneyReturned}}</small></h1>
+			<h1>Daily Returns %: <small>{{returns}}%</small></h1>
+			<h1>Daily Risk %: <small>{{risks}}%</small></h1>
 			<h1>% Allocation:</h1>
 			<div id="chart">
 				<script>

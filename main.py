@@ -20,7 +20,6 @@ import jinja2
 import output27
 import json
 
-
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 								autoescape = False)
@@ -72,16 +71,28 @@ class MainHandler(Handler):
 			#Setting the time series of stock information
 			start_date = '20140101'
 			end_date = '20140701'
-			
-			calculatedResults = output27.results(symbol, start_date, end_date, models)
-			
-			returns = float(calculatedResults[0])*100.0
-			moneyReturned = returns*amount
-			totalMoneyMade = amount+moneyReturned
-			risks = float(calculatedResults[1])*100
-			allocation = calculatedResults[2]
 
-			self.render("mainOutputs.html", returns=returns, risks=risks, symbol=symbol, allocation=allocation, amount=amount, moneyReturned=moneyReturned, totalMoneyMade=totalMoneyMade, modelLabel=modelLabel)
+			#Setting the results of the calculations:
+			calculatedResults = output27.results(symbol, start_date, end_date, models)
+			returns = float(calculatedResults[0])*100.0
+			anuityFactor = float(calculatedResults[0])+1.0
+			totalMoneyMade = amount*anuityFactor
+			moneyReturned = totalMoneyMade-1000.0
+			risks = float(calculatedResults[1])*100.0
+			
+			if len(symbol) == 1:
+				allocation = [1]
+			else:
+				allocation = calculatedResults[2]
+
+			self.render("mainOutputs.html", returns=returns, 
+											risks=risks, 
+											symbol=symbol, 
+											allocation=allocation, 
+											amount=amount, 
+											moneyReturned=moneyReturned, 
+											totalMoneyMade=totalMoneyMade, 
+											modelLabel=modelLabel)
 		except:
 			self.render("mainInputsError.html")
 				

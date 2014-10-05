@@ -12,9 +12,9 @@ def results(symbol, start_date, end_date, what):
     a, b, c, d, e, f, g=stockdata27.stockdata(symbol, start_date, end_date)
     returns, Mu, Sigma=returns27.returns(g)
 
-    if what == 'staticshort':
+    if what == 'Minimum Variance Portfolio - Short':
         Mu_mv,sigma_mv,Theta_mv=portfoliomv27.portfoliomv(Mu, Sigma)
-    elif what == 'staticnoshort':
+    elif what == 'Minimum Variance Portfolio - No Short':
         Mu_mv, sigma_mv, Theta_mv = portfoliomv27.portfoliomvns(Mu, Sigma)
 
     return Mu_mv, sigma_mv, Theta_mv

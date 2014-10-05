@@ -27,16 +27,16 @@
 		<form method="post">
 			<label>
 				<div>Amount</div>
-				<input type="number" name="amount">
+				<input type="number" name="amount" placeholder="e.g. 1000">
 			</label>
 
 			<br>
 
 			<label>
 				<div>Company Stock Ticker Name</div> 
-				<small>(space-separate each ticker symbol eg. aapl googl r msft)</small>
+				<small>(space-separate each ticker symbol)</small>
 				<br>
-				<input type="string" name="company">
+				<input type="string" name="company" placeholder="ex: ba msft aapl googl">
 			</label>
 
 			<br>
@@ -55,13 +55,13 @@
 				 <ul class="dropdown-menu" role="menu">
 					<li>
 						<label>
-						<input type="radio" name="models" value="staticshort">
+						<input type="radio" name="models" value="Minimum Variance Portfolio - Short">
 						Short Selling
 						</label>
 					</li>
 					<li>
 						<label>
-						<input type="radio" name="models" value="staticnoshort">
+						<input type="radio" name="models" value="Minimum Variance Portfolio - No Short">
 						No Short Selling
 						</label>
 					</li>
