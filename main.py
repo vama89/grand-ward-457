@@ -15,7 +15,9 @@
 # limitations under the License.
 #
 import os
-#Sign-in Code will go here
+#Sign-in import Code will go here:
+
+#imports that are not part of sign-in/register
 import output27
 import json
 
@@ -47,7 +49,7 @@ class Blog(Handler):
 
 class Login_Register(Handler):
 	def get(self):
-		self.render("login_register.html")
+		self.render("Login_Register.html")
 
 class Test_Graph(Handler):
 	def get(self):
@@ -69,19 +71,20 @@ class MainHandler(Handler):
 
 			#This formats the company parameter to an array of strings.
 			symbol = str(company).split()
-
+			
 			#Setting the time series of stock information
 			start_date = '20140101'
 			end_date = '20140701'
-
+			
 			#Setting the results of the calculations:
 			calculatedResults = output27.results(symbol, start_date, end_date, models)
+			print calculatedResults
 			returns = float(calculatedResults[0])*100.0
 			anuityFactor = float(calculatedResults[0])+1.0
 			totalMoneyMade = amount*anuityFactor
 			moneyReturned = totalMoneyMade-1000.0
 			risks = float(calculatedResults[1])*100.0
-			
+
 			if len(symbol) == 1:
 				allocation = [1]
 			else:
