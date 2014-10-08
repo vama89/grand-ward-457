@@ -170,7 +170,7 @@ class BlogHandler(webapp2.RequestHandler):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         uid = self.read_secure_cookie('user_id')
         self.user = uid and User.by_id(int(uid))
-
+"""
 def render_post(response, post):
     response.out.write('<b>' + post.subject + '</b><br>')
     response.out.write(post.content)
@@ -178,7 +178,7 @@ def render_post(response, post):
 class MainPage(BlogHandler):
   def get(self):
       self.write('Hello, Udacity!')
-
+"""
 ##### user stuff
 def make_salt(length = 5):
     return ''.join(random.choice(letters) for x in xrange(length))
@@ -225,7 +225,7 @@ class User(db.Model):
             return u
 
 ##### blog stuff
-
+"""
 def blog_key(name = 'default'):
     return db.Key.from_path('blogs', name)
 
@@ -279,6 +279,7 @@ class NewPost(BlogHandler):
 
 
 ###### Unit 2 HW's
+
 class Rot13(BlogHandler):
     def get(self):
         self.render('rot13-form.html')
@@ -291,7 +292,7 @@ class Rot13(BlogHandler):
 
         self.render('rot13-form.html', text = rot13)
 
-
+"""
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 def valid_username(username):
     return username and USER_RE.match(username)
@@ -340,11 +341,11 @@ class Signup(BlogHandler):
 
     def done(self, *a, **kw):
         raise NotImplementedError
-
+"""
 class Unit2Signup(Signup):
     def done(self):
         self.redirect('/unit2/welcome?username=' + self.username)
-
+"""
 class Register(Signup):
     def done(self):
         #make sure the user doesn't already exist
@@ -370,7 +371,7 @@ class Login(BlogHandler):
         u = User.login(username, password)
         if u:
             self.login(u)
-            self.redirect('/blog')
+            self.redirect('/unit3/welcome')
         else:
             msg = 'Invalid login'
             self.render('login-form.html', error = msg)
@@ -378,15 +379,58 @@ class Login(BlogHandler):
 class Logout(BlogHandler):
     def get(self):
         self.logout()
-        self.redirect('/blog')
+        self.redirect('/')
 
 class Unit3Welcome(BlogHandler):
     def get(self):
         if self.user:
-            self.render('welcome.html', username = self.user.name)
+            self.render('mainInputsUser.html', username = self.user.name)
         else:
             self.redirect('/signup')
 
+    def post(self):
+		
+
+		#Run the Static Model Calculations and get the outputs of the Models into an array.
+		try:
+			amount = float(self.request.get("amount"))
+			company = self.request.get("company")
+			models = self.request.get("models")
+			modelLabel=str(models)
+
+			#This formats the company parameter to an array of strings.
+			symbol = str(company).split()
+			
+			#Setting the time series of stock information
+			start_date = '20140101'
+			end_date = '20140701'
+			
+			#Setting the results of the calculations:
+			calculatedResults = output27.results(symbol, start_date, end_date, models)
+			print calculatedResults
+			returns = float(calculatedResults[0])*100.0
+			anuityFactor = float(calculatedResults[0])+1.0
+			totalMoneyMade = amount*anuityFactor
+			moneyReturned = totalMoneyMade-1000.0
+			risks = float(calculatedResults[1])*100.0
+
+			if len(symbol) == 1:
+				allocation = [1]
+			else:
+				allocation = calculatedResults[2]
+
+			self.render("mainOutputsUser.html", returns=returns, 
+											risks=risks, 
+											symbol=symbol, 
+											allocation=allocation, 
+											amount=amount, 
+											moneyReturned=moneyReturned, 
+											totalMoneyMade=totalMoneyMade, 
+											modelLabel=modelLabel,
+											username=self.user.name)
+		except:
+			self.render("mainInputsErrorUser.html", username=self.user.name)
+"""
 class Welcome(BlogHandler):
     def get(self):
         username = self.request.get('username')
@@ -394,6 +438,7 @@ class Welcome(BlogHandler):
             self.render('welcome.html', username = username)
         else:
             self.redirect('/unit2/signup')
+"""
 #########
 
 
@@ -402,13 +447,13 @@ app = webapp2.WSGIApplication([('/', MainHandler),
 								('/Blog', Blog),
 								('/Login_Register', Login_Register),
 								('/Test_Graph', Test_Graph),
-								('/', MainPage),
-								('/unit2/rot13', Rot13),
-								('/unit2/signup', Unit2Signup),
-								('/unit2/welcome', Welcome),
-								('/blog/?', BlogFront),
-								('/blog/([0-9]+)', PostPage),
-								('/blog/newpost', NewPost),
+								#('/', MainPage),
+								#('/unit2/rot13', Rot13),
+								#('/unit2/signup', Unit2Signup),
+								#('/unit2/welcome', Welcome),
+								#('/blog/?', BlogFront),
+								#('/blog/([0-9]+)', PostPage),
+								#('/blog/newpost', NewPost),
 								('/signup', Register),
 								('/login', Login),
 								('/logout', Logout),

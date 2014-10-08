@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6">
+		<h1>
+			Welcome {{username}} <a href="/logout">logout</a>
+		</h1>
+
+		<form method="post">
+			<label>
+				<div>Amount</div>
+				<input type="number" name="amount" placeholder="e.g. 1000">
+			</label>
+
+			<br>
+
+			<label>
+				<div>Company Stock Ticker Name</div> 
+				<small>(space-separate each ticker symbol)</small>
+				<br>
+				<input type="string" name="company" placeholder="ex: ba msft aapl googl">
+			</label>
+
+			<br>
+
+			<label><div> Analysis Tools: </div></label>
+
+			<br>
+			
+			<div class="btn-group">
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					Static Models
+					<span class="caret"></span>
+				</button>
+				 <ul class="dropdown-menu" role="menu">
+					<li>
+						<label>
+						<input type="radio" name="models" value="Minimum Variance Portfolio - Short">
+						Short Selling
+						</label>
+					</li>
+					<li>
+						<label>
+						<input type="radio" name="models" value="Minimum Variance Portfolio - No Short">
+						No Short Selling
+						</label>
+					</li>
+				</ul>
+			</div>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					Dynamic Models
+					<span class="caret"></span>
+				</button>
+				 <ul class="dropdown-menu" role="menu">
+				 	<li role="presentation" class="dropdown-header">These models don't work yet. For demo purposes only.</li>
+				 	<li>
+						<label>
+						<input type="radio" name="models" value="dynamcishort">
+						Short Selling
+						</label>
+					</li>
+					<li>
+						<label>
+						<input type="radio" name="models" value="dynamicnoshort">
+						No Short Selling
+						</label>
+					</li>
+				</ul>
+			</div>
+
+				<input type="submit" class="btn btn-default">
+			</div>
+
+			<br>
+		</form>
+	</div>
+
+	<div class="col-md-6">
+		<div class="embed-responsive embed-responsive-16by9">
+  			<iframe class="embed-responsive-item" src="//www.youtube.com/embed/vldUcbDrork?list=UUGgTp2mrzdlQioqLf9l6DIA"></iframe>
+		</div>
+	</div>
+
+</div>
+{% endblock %}
