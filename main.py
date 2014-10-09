@@ -87,21 +87,22 @@ class MainHandler(Handler):
 			
 			#Setting the results of the calculations:
 			calculatedResults = output27.results(symbol, start_date, end_date, models)
-			print calculatedResults
 			returns = float(calculatedResults[0])*100.0
 			anuityFactor = float(calculatedResults[0])+1.0
 			totalMoneyMade = amount*anuityFactor
 			moneyReturned = totalMoneyMade-1000.0
 			risks = float(calculatedResults[1])*100.0
 
-			if len(symbol) == 1:
+			symbolSort = calculatedResults[3]
+
+			if len(symbolSort) == 1:
 				allocation = [1]
 			else:
 				allocation = calculatedResults[2]
 
 			self.render("mainOutputs.html", returns=returns, 
 											risks=risks, 
-											symbol=symbol, 
+											symbolSort=symbolSort, 
 											allocation=allocation, 
 											amount=amount, 
 											moneyReturned=moneyReturned, 
@@ -407,12 +408,13 @@ class Unit3Welcome(BlogHandler):
 			
 			#Setting the results of the calculations:
 			calculatedResults = output27.results(symbol, start_date, end_date, models)
-			print calculatedResults
 			returns = float(calculatedResults[0])*100.0
 			anuityFactor = float(calculatedResults[0])+1.0
 			totalMoneyMade = amount*anuityFactor
 			moneyReturned = totalMoneyMade-1000.0
 			risks = float(calculatedResults[1])*100.0
+
+			symbolSort = calculatedResults[3]
 
 			if len(symbol) == 1:
 				allocation = [1]
@@ -421,7 +423,7 @@ class Unit3Welcome(BlogHandler):
 
 			self.render("mainOutputsUser.html", returns=returns, 
 											risks=risks, 
-											symbol=symbol, 
+											symbolSort=symbol, 
 											allocation=allocation, 
 											amount=amount, 
 											moneyReturned=moneyReturned, 

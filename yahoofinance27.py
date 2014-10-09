@@ -1,20 +1,16 @@
-"""
-from urllib.request import Request, urlopen
-from urllib.parse import urlencode
-"""
-import urllib
+from urllib import urlencode
 import urllib2
 import numpy
 
 def get_historical_prices(symbol, start_date, end_date):
     """
     Get historical prices for the given ticker symbol.
+    Symbol format is 'symbol'
     Date format is 'YYYYMMDD'
-
-    Returns a nested dictionary (dict of dicts).
-    outer dict keys are dates ('YYYYMMDD')
+    By VC Analytics on 09/27/2014
     """	
-    params = urllib.urlencode({
+
+    params = urlencode({
         's': symbol,
         'a': int(start_date[4:6]) - 1,
         'b': int(start_date[6:8]),
@@ -58,18 +54,3 @@ def get_historical_prices(symbol, start_date, end_date):
     adjclose = adjclosetemp
 
     return date, open, high, low, close, vol, adjclose
-
-"""
-	t = sum(1 for row in daily_data)
-	data = daily_data[1].split(',')
-	for i in range(2,t):
-		datatemp = daily_data[i].split(',')
-		data = np.c_[data,datatemp]
-"""
-	
-"""
-data = [day[:-2].split(',') for day in days]
-import yahoofinance as yf
-data = yf.get_historical_prices(...)
-python yahoofinance.py aapl m 20031201 20140801
-"""

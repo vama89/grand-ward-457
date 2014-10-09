@@ -1,6 +1,6 @@
 import json
 import numpy
-import quadprog4
+import quadprog27
 
 """
 Computes the minimium variance portfolio with short-selling and without short-selling.
@@ -57,7 +57,7 @@ def portfoliomvns(Mu, Sigma):
     b = 1.0
     x = numpy.zeros((n,1))
     maxiter = 200
-    xstar, ystar, zstar, sstar = quadprog4.qp(x, Q, c, C, d, A, b, maxiter)
+    xstar, ystar, zstar, sstar = quadprog27.qp(x, Q, c, C, d, A, b, maxiter)
 
     # Minimum Variance Portfolio
     Theta_mvns = xstar

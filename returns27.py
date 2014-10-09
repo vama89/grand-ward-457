@@ -2,6 +2,10 @@ import numpy
 import meancov27
 
 def returns(X):
+    """
+    Compute the returns of x
+    By VC Analytics on 09/27/2014
+    """
 
     t = len(X.T)
     n = len(X)
