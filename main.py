@@ -359,7 +359,7 @@ class Register(Signup):
             u.put()
 
             self.login(u)
-            self.redirect('/blog')
+            self.redirect('/unit3/welcome')
 
 class Login(BlogHandler):
     def get(self):
